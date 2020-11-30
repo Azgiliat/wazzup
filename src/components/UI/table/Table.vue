@@ -186,6 +186,8 @@ export default {
   }
 
   &__header-cell {
+    border: 1px solid $main-black;
+    
     &--sortable {
       &:hover {
         cursor: pointer;
