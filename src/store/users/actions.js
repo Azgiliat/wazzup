@@ -3,8 +3,10 @@ export function loadUsers ({ commit} ) {
 
   return this.$wazzupApi.loadData()
     .then(res => {
-      console.log(res)
       commit('setUsers', res)
+    })
+    .catch(() => {
+      commit('setUsers', [])
     })
     .finally(() => {
       commit('setLoadingStatus', false)

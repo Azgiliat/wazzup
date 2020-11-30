@@ -38,9 +38,13 @@ store.$submit = function({method = 'get', data = null, query = null, url = ''}) 
   }
 
   return this.$axios(options)
-    .then(res => res.data)
+    .then(res => {
+      // throw new Error('test err') //  test error for popup
+      // eslint-disable-next-line no-unreachable
+      return res.data
+    })
     .catch(err => {
-      this.commit('global/setErrorText', 'Что-то пошло не так. Перезагрузите страницу :)')
+      this.commit('global/setErrorText', 'Что-то пошло не так :)')
       this.commit('global/setDevErrorText', err)
       throw new Error(err)
     })
