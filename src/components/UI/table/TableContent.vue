@@ -64,37 +64,39 @@ export default {
         }))
 
     const columnsHead = columnsOptions.map((column, index) => h('th', {
-      class: 'table__header-cell',
+      class: {
+        'table__header-cell': true,
+        'table__header-cell--sortable': column.sortable
+      },
       key: `table-header-${index}`,
       style: {
         width: `${column.width}px`,
+      },
+      on: {
+        click: () => {
+          if (this.sortBy === column.prop) {
+            this.sortDirection = !this.sortDirection
+          } else {
+            this.sortDirection = false
+            this.sortBy = column.prop
+          }
+          this.sortRows()
+        }
       }
     }, [
       h('div', {
         class: 'table__cell-wrapper'
       }, [h('p', {
         class: 'table__header-title',
-        domProps: {
-          innerHTML: column.title
-        }
-      }),
+      }), [
+        column.title,
         column.sortable && h('div', {
           class: {
             'table__header-sort': true,
+            'table__header-sort--show': this.sortBy === column.prop,
             'table__header-sort--down': this.sortBy === column.prop && !this.sortDirection
-          },
-          on: {
-            click: () => {
-              if (this.sortBy === column.prop) {
-                this.sortDirection = !this.sortDirection
-              } else {
-                this.sortDirection = false
-                this.sortBy = column.prop
-              }
-              this.sortRows()
-            }
           }
-        })])
+        })]])
     ]))
 
     const rows = this.actualRows.map((row, index) => h('tr', {

@@ -138,14 +138,6 @@ export default {
     margin-bottom: 50px;
   }
 
-  &__header-sort {
-    width: 0;
-    height: 0;
-    border-bottom: 10px solid $main-black;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-  }
-
   &-move {
     transition: transform 1s;
   }
@@ -175,11 +167,33 @@ export default {
   }
 
   &__header-sort {
+    width: 0;
+    height: 0;
+    border-bottom: 10px solid $main-black;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
     margin-left: 10px;
-    transition: transform $transition;
+    transition: transform $transition, opacity $transition;
+    opacity: 0;
 
     &--down {
       transform: rotate(180deg);
+    }
+
+    &--show {
+      opacity: 1;
+    }
+  }
+
+  &__header-cell {
+    &--sortable {
+      &:hover {
+        cursor: pointer;
+
+        .table__header-sort {
+          opacity: 1;
+        }
+      }
     }
   }
 
