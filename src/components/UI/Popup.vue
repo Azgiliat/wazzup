@@ -82,6 +82,8 @@ export default {
       border-radius: 1px;
       background-color: $error;
       transform: rotate(45deg);
+      top: calc(50% - 1px);
+      left: 0;
     }
 
     &::after {

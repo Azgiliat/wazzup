@@ -4,7 +4,7 @@
       Поиск в таблице
     </p>
     <div class="search__controls">
-      <AppInput class="search__input" :value.sync="search"/>
+      <AppInput cleanable @enter="$emit('goSearch')" class="search__input" :value.sync="search"/>
       <AppButton class="search__button" @click="$emit('goSearch')">
         Найти
       </AppButton>
@@ -15,9 +15,6 @@
 <script>
 import AppInput from '@/components/UI/AppInput'
 import AppButton from '@/components/UI/AppButton'
-
-//TODO add @keyup.enter for search
-//TODO add X for delete search string
 
 export default {
   name: 'TableSearch',
