@@ -12,7 +12,7 @@ export default {
   name: 'App',
   computed: {
     ...mapState('global', {
-      isOverlayShow: 'isOverlayShow'
+      isOverlayShow: 'isPopupShow'
     })
   },
   methods: {
